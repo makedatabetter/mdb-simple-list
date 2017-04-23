@@ -18,7 +18,7 @@ list component
       
        :host paper-listbox {
         outline: 0;
-        padding-bottom: 0;
+        padding: 0;
       }
     </style>
     <paper-listbox>
@@ -42,16 +42,28 @@ list component
         },
       },
 
-      attached: function () {
-        var list = this.querySelector('paper-listbox');
-        if (list) {
-          for (var i = 0; i < this.items.length; i++) {
-            var item = document.createElement('paper-item');
-            item.textContent = this.items[i].name;
-            Polymer.dom(list).appendChild(item);
+      behaviors: [Polymer.Templatizer],
+
+      ready: function () {
+        var template = this.queryEffectiveChildren('template');
+        if (template) {
+          var list = Polymer.dom(this.$$('paper-listbox'));
+          this.dataHost = this;
+          this.templatize(template);
+
+          var items = this.items;
+          for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            var clone = this.stamp({});
+
+            for (var k in item) {
+              clone[k] = item[k];
+            }
+
+            list.appendChild(clone.root);
           }
         }
-      }
+      },
     });
   </script>
 </dom-module>

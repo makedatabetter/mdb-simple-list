@@ -1,28 +1,32 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>mdb-simple-list demo</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <title>mdb-simple-list demo</title>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../mdb-simple-list.html">
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
-    <style is="custom-style" include="demo-pages-shared-styles">
-    </style>
-  </head>
-  <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic mdb-simple-list demo</h3>
-      <demo-snippet>
-        <template>
-          <mdb-simple-list></mdb-simple-list>
-        </template>
-      </demo-snippet>
-    </div>
-  </body>
+  <link rel="import" href="../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../bower_components/iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../mdb-simple-list.html">
+
+  <style is="custom-style" include="demo-pages-shared-styles">
+
+  </style>
+</head>
+
+<body>
+  <div class="vertical-section-container centered">
+    <h3>Basic mdb-simple-list demo</h3>
+    <mdb-simple-list items='[{"name":"HELLO"},{"name":"WORLD"}]'>
+      <template>
+        <paper-item>{{name}}</paper-item>
+      </template>
+    </mdb-simple-list>
+  </div>
+</body>
+
 </html>
