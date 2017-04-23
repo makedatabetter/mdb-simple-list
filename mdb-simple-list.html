@@ -40,6 +40,14 @@ list component
           type: Array,
           value: [],
         },
+
+        selectedItem: {
+          type: Object
+        },
+
+        selectedItems: {
+          type: Array
+        }
       },
 
       behaviors: [Polymer.Templatizer],
@@ -64,6 +72,25 @@ list component
           }
         }
       },
+
+      attached: function () {
+        this._bindListboxEvents();
+      },
+
+      _bindListboxEvents: function () {
+        var that = this;
+        var listbox = this.querySelector('paper-listbox');
+        if (listbox) {
+          listbox.addEventListener('selected-item-changed', function () {
+            that.selectedItem = that.items[this.selected];
+          });
+          listbox.addEventListener('selected-items-changed', function () {
+            that.selectedItems = this.selectedValues && this.selectedValues.map(function (e) {
+              return that.items[e];
+            });
+          });
+        }
+      }
     });
   </script>
 </dom-module>
