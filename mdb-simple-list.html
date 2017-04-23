@@ -1,0 +1,52 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="bower_components/paper-item/paper-item.html">
+
+<!--
+`mdb-simple-list`
+list component
+
+@demo demo/index.html 
+-->
+
+<dom-module id="mdb-simple-list">
+  <template>
+    <style>
+       :host {
+        display: block;
+      }
+    </style>
+    <paper-listbox>
+    </paper-listbox>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'mdb-simple-list',
+
+      properties: {
+        name: {
+          type: String,
+          value: 'mdb-simple-list',
+        },
+
+        items: {
+          type: Array,
+          value: [],
+        },
+      },
+
+      attached: function () {
+        var list = this.querySelector('paper-listbox');
+        if (list) {
+          for (var i = 0; i < this.items.length; i++) {
+            var item = document.createElement('paper-item');
+            item.textContent = this.items[i].name;
+            Polymer.dom(list).appendChild(item);
+          }
+        }
+      }
+    });
+  </script>
+</dom-module>
