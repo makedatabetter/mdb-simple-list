@@ -68,9 +68,13 @@ list component
           for (var i = 0; i < items.length; i++) {
             var item = items[i];
             var clone = this.stamp({});
-
-            for (var k in item) {
-              clone[k] = item[k];
+            
+            if (typeof item === typeof '') {
+              clone['this'] = item;
+            } else {
+              for (var k in item) {
+                clone[k] = item[k];
+              }
             }
 
             list.appendChild(clone.root);
