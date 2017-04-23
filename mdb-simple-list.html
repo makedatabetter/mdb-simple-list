@@ -56,6 +56,8 @@ list component
         items: {
           type: Array,
           value: [],
+          notify: true,
+          observer: '_renderList'
         },
 
         selectedItem: {
@@ -74,12 +76,14 @@ list component
 
       behaviors: [Polymer.Templatizer],
 
-      ready: function () {
+      _renderList: function () {
         var template = this.queryEffectiveChildren('template');
         if (template) {
           var list = Polymer.dom(this.$$('paper-listbox'));
+          
           this.dataHost = this;
           this.templatize(template);
+          this._emptyList();
 
           var items = this.items;
           for (var i = 0; i < items.length; i++) {
@@ -97,6 +101,16 @@ list component
             list.appendChild(clone.root);
           }
         }
+      },
+
+      _emptyList: function () {
+        var list = Polymer.dom(this.$$('paper-listbox'));
+        var children = list.children;
+        //Clear the list before rendering
+        for (var i = 0; i < children.length; i++) {
+          list.removeChild(children[i]);
+        }
+        list.flush();
       },
 
       attached: function () {
