@@ -25,12 +25,25 @@ list component
           color: #fff;
           background-color: #5caadb;
         }
+        @apply(--paper-item)
+        @apply(--paper-item-focused-before)
+        @apply(--paper-item-focused)
+        @apply(--paper-item-selected-before)
+        @apply(--paper-item-selected)
+        @apply(--paper-item-body-secondary)
+        @apply(--paper-item-icon)
+        @apply(--paper-icon-item)         
+        @apply(--paper-item-selected)
+        @apply(--paper-item-disabled)     
+        @apply(--paper-item-focused)     
+        @apply(--paper-item-focused-before)
       }
       
        :host paper-listbox {
         outline: 0;
         padding: 0;
         color: #a1a2a4;
+        @apply(--mdb-simple-list)
       }
     </style>
     <div id="scrollable-element" style="display:block;height:{{height}}px;overflow-y: auto;">
@@ -69,8 +82,8 @@ list component
         },
 
         height: {
-          type: Number,
-          value: 400
+          type: String,
+          value: '400'
         }
       },
 
